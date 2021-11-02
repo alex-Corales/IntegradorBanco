@@ -1,0 +1,14 @@
+42125797
+Barrio serranias puntanas
+1500000.0
+6
+1000.0
+2000.0
+5
+43123517
+Barrio serranias puntanas
+1500000.0
+6
+1000.0
+2000.0
+5
