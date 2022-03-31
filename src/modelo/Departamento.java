@@ -1,34 +1,32 @@
 package modelo;
 
-public class Departamento extends Propiedad{
-    private int piso;
-    private int numero;
+public class Departamento extends Propiedad {
+
+    private String piso;
+    private String numero;
     private String letra;
-    
-    public Departamento(){
+
+    public Departamento() {
         super();
-        this.piso = 0;
-        this.numero = 0;
+        this.piso = "";
+        this.numero = "";
         this.letra = "";
     }
-    
-    public Departamento(String direccion, double valorTasacion, int cantAmbientes, double metrosCuadradosCubiertos, double metrosCuadradosTotales, int piso, int numero){
+
+    /*
+    Constructor para la carga de los archivos 
+     */
+    public Departamento(String direccion, String valorTasacion, String cantAmbientes, String metrosCuadradosCubiertos, String metrosCuadradosTotales, String piso, String numero) {
         super(direccion, valorTasacion, cantAmbientes, metrosCuadradosCubiertos, metrosCuadradosTotales);
         this.piso = piso;
         this.numero = numero;
     }
-    
-    public Departamento(String direccion, double valorTasacion, int cantAmbientes, double metrosCuadradosCubiertos, double metrosCuadradosTotales, int piso, String letra){
-        super(direccion, valorTasacion, cantAmbientes, metrosCuadradosCubiertos, metrosCuadradosTotales);
-        this.piso = piso;
-        this.letra = letra;
-    }
 
-    public void setPiso(int piso) {
+    public void setPiso(String piso) {
         this.piso = piso;
     }
 
-    public void setNumero(int numero) {
+    public void setNumero(String numero) {
         this.numero = numero;
     }
 
@@ -36,11 +34,11 @@ public class Departamento extends Propiedad{
         this.letra = letra;
     }
 
-    public int getPiso() {
+    public String getPiso() {
         return piso;
     }
 
-    public int getNumero() {
+    public String getNumero() {
         return numero;
     }
 
@@ -49,9 +47,14 @@ public class Departamento extends Propiedad{
     }
 
     @Override
-    public String toString() {
-        return "Departamento{" + "piso=" + piso + ", numero=" + numero + ", letra=" + letra + '}';
+    public void mostrarDatos(){
+        System.out.println("Direccion: "+direccion);
+        System.out.println("Tasacion: "+valorTasacion);
+        System.out.println("Ambientes: "+cantAmbientes);
+        System.out.println("Metros cuadrados cubiertos: "+metrosCuadradosCubiertos);
+        System.out.println("Metros cuadrados totales: "+metrosCuadradosTotales);
+        System.out.println("Piso: "+piso);
+        System.out.println("Numero: "+numero);
     }
-    
-    
+
 }

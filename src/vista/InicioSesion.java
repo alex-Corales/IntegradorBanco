@@ -31,6 +31,7 @@ public class InicioSesion extends javax.swing.JFrame {
         usuarioInicioSesion = new javax.swing.JTextField();
         contraseñaInicioSesion = new javax.swing.JPasswordField();
         entrarInicioSesion = new javax.swing.JButton();
+        jSeparator3 = new javax.swing.JSeparator();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setLocationByPlatform(true);
@@ -124,6 +125,7 @@ public class InicioSesion extends javax.swing.JFrame {
             }
         });
         contenedorInicio.add(entrarInicioSesion, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 440, 140, 40));
+        contenedorInicio.add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 340, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -222,6 +224,7 @@ public class InicioSesion extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
+    private javax.swing.JSeparator jSeparator3;
     private javax.swing.JTextField usuarioInicioSesion;
     // End of variables declaration//GEN-END:variables
 

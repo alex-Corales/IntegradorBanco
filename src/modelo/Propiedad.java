@@ -1,45 +1,49 @@
 package modelo;
 
 public class Propiedad {
+
     protected String direccion;
-    protected double valorTasacion;
-    protected int cantAmbientes;
-    protected double metrosCuadradosCubiertos;
-    protected double metrosCuadradosTotales;
-    
-    public Propiedad(String direccion, double valorTasacion, int cantAmbientes, double metrosCuadradosCubiertos, double metrosCuadradosTotales){
+    protected String valorTasacion;
+    protected String cantAmbientes;
+    protected String metrosCuadradosCubiertos;
+    protected String metrosCuadradosTotales;
+
+    public Propiedad() {
+        this.direccion = "";
+        this.valorTasacion = "";
+        this.cantAmbientes = "";
+        this.metrosCuadradosCubiertos = "";
+        this.metrosCuadradosTotales = "";
+    }
+
+    /*
+    Constructor para la carga de los archivos 
+     */
+    public Propiedad(String direccion, String valorTasacion, String cantAmbientes, String metrosCuadradosCubiertos, String metrosCuadradosTotales) {
         this.direccion = direccion;
         this.valorTasacion = valorTasacion;
         this.cantAmbientes = cantAmbientes;
         this.metrosCuadradosCubiertos = metrosCuadradosCubiertos;
         this.metrosCuadradosTotales = metrosCuadradosTotales;
     }
-    
-    public Propiedad(){
-        this.direccion = "";
-        this.valorTasacion = 0.0;
-        this.cantAmbientes = 0;
-        this.metrosCuadradosCubiertos = 0.0;
-        this.metrosCuadradosTotales = 0.0;
-    }
 
     public void setDireccion(String direccion) {
         this.direccion = direccion;
     }
 
-    public void setValorTasacion(double valorTasacion) {
+    public void setValorTasacion(String valorTasacion) {
         this.valorTasacion = valorTasacion;
     }
 
-    public void setCantAmbientes(int cantAmbientes) {
+    public void setCantAmbientes(String cantAmbientes) {
         this.cantAmbientes = cantAmbientes;
     }
 
-    public void setMetrosCuadradosCubiertos(double metrosCuadradosCubiertos) {
+    public void setMetrosCuadradosCubiertos(String metrosCuadradosCubiertos) {
         this.metrosCuadradosCubiertos = metrosCuadradosCubiertos;
     }
 
-    public void setMetrosCuadradosTotales(double metrosCuadradosTotales) {
+    public void setMetrosCuadradosTotales(String metrosCuadradosTotales) {
         this.metrosCuadradosTotales = metrosCuadradosTotales;
     }
 
@@ -47,26 +51,28 @@ public class Propiedad {
         return direccion;
     }
 
-    public double getValorTasacion() {
+    public String getValorTasacion() {
         return valorTasacion;
     }
 
-    public int getCantAmbientes() {
+    public String getCantAmbientes() {
         return cantAmbientes;
     }
 
-    public double getMetrosCuadradosCubiertos() {
+    public String getMetrosCuadradosCubiertos() {
         return metrosCuadradosCubiertos;
     }
 
-    public double getMetrosCuadradosTotales() {
+    public String getMetrosCuadradosTotales() {
         return metrosCuadradosTotales;
     }
-
-    @Override
-    public String toString() {
-        return "Inmueble{" + "direccion=" + direccion + ", valorTasacion=" + valorTasacion + ", cantAmbientes=" + cantAmbientes + ", metrosCuadradosCubiertos=" + metrosCuadradosCubiertos + ", metrosCuadradosTotales=" + metrosCuadradosTotales + '}';
+    
+    public void mostrarDatos(){
+        System.out.println("Direccion: "+direccion);
+        System.out.println("Tasacion: "+valorTasacion);
+        System.out.println("Ambientes: "+cantAmbientes);
+        System.out.println("Metros cuadrados cubiertos: "+metrosCuadradosCubiertos);
+        System.out.println("Metros cuadrados totales: "+metrosCuadradosTotales);
     }
-    
-    
+
 }

@@ -3,15 +3,18 @@ package controlador;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.HashMap;
+import java.util.Set;
 import modelo.Casa;
 import modelo.Departamento;
 import modelo.Propiedad;
 
 public class LecturaArchivoInmueble {
 
-    HashMap<String, Propiedad> mapPropiedad = new HashMap<String, Propiedad>();
+    private static HashMap<String, Propiedad> mapPropiedad = new HashMap<String, Propiedad>();
 
     public void cargarCasa() {
         File leerArchivo = new File("casas.txt");
@@ -29,31 +32,29 @@ public class LecturaArchivoInmueble {
                     String direccion = cadena;
 
                     cadena = almacenamiento.readLine();
-                    String tasacionAr = "111111.0";
+                    String tasacionAr = cadena;
 
                     cadena = almacenamiento.readLine();
-                    String cantAmbientesAr = "5";
+                    String cantAmbientesAr = cadena;
 
                     cadena = almacenamiento.readLine();
-                    String metrosCubiertosAr = "33.2";
+                    String metrosCubiertosAr = cadena;
 
                     cadena = almacenamiento.readLine();
-                    String metrosTotalesAr = "2.0";
+                    String metrosTotalesAr = cadena;
 
                     cadena = almacenamiento.readLine();
-                    String antiguedadAr = "2";
+                    String antiguedadAr = cadena;
 
-                    int antiguedad = Integer.valueOf(antiguedadAr);
-                    double tasacion = Double.valueOf(tasacionAr);
-                    int cantAmbientes = Integer.valueOf(cantAmbientesAr);
-                    double metrosCubiertos = Double.valueOf(metrosCubiertosAr);
-                    double metrosTotales = Double.valueOf(metrosTotalesAr);
+                    mapPropiedad.put(dni, new Casa(antiguedadAr, direccion, tasacionAr, cantAmbientesAr, metrosCubiertosAr, metrosTotalesAr));
 
-                    mapPropiedad.put(dni, new Casa(antiguedad, direccion, tasacion, cantAmbientes, metrosCubiertos, metrosTotales));
                 } catch (IOException ex) {
-                    
+
                 }
             }
+
+            almacenamiento.close();
+            leer.close();
         } catch (IOException ex) {
 
         }
@@ -73,30 +74,30 @@ public class LecturaArchivoInmueble {
 
                 cadena = almacenamiento.readLine();
                 String direccion = cadena;
+                
+                cadena = almacenamiento.readLine();
+                String tasacion = cadena;
 
                 cadena = almacenamiento.readLine();
-                double tasacion = Double.parseDouble(cadena);
+                String cantAmbientes = cadena;
 
                 cadena = almacenamiento.readLine();
-                int cantAmbientes = Integer.parseInt(cadena);
+                String metrosCuadradosTotales = cadena;
 
                 cadena = almacenamiento.readLine();
-                double metrosCubiertos = Double.parseDouble(cadena);
+                String metrosCuadradosCubiertos = cadena;
 
                 cadena = almacenamiento.readLine();
-                double metrosTotales = Double.parseDouble(cadena);
+                String piso = cadena;
 
                 cadena = almacenamiento.readLine();
-                int antiguedad = Integer.parseInt(cadena);
+                String numero = cadena;
 
-                cadena = almacenamiento.readLine();
-                int piso = Integer.parseInt(cadena);
+                mapPropiedad.put(dni, new Departamento(direccion, tasacion, cantAmbientes, metrosCuadradosCubiertos, metrosCuadradosTotales, piso, numero));
 
-                cadena = almacenamiento.readLine();
-                int numero = Integer.parseInt(cadena);
-
-                mapPropiedad.put(dni, new Departamento(direccion, tasacion, cantAmbientes, metrosCubiertos, metrosTotales, piso, numero));
             }
+            almacenamiento.close();
+            leer.close();
         } catch (IOException ex) {
 
         }
@@ -113,8 +114,200 @@ public class LecturaArchivoInmueble {
         } else {
             return 0;
         }
-
-//                almacenamiento.close();
-//                leer.close();
     }
+    
+    public HashMap<String, Propiedad> propiedadCargadaMapa(){
+        cargarCasa();
+        cargarDepartemento();
+        return mapPropiedad;
+    }
+    
+    public HashMap<String, Propiedad> propiedadCargadaMapaCasa(){
+        cargarCasa();
+        return mapPropiedad;
+    }
+    
+    public static HashMap<String, Propiedad> accesoADatos() {
+        return mapPropiedad;
+    }
+    
+        public static void eliminarCasa(){
+        File archivo= new File("casas.txt");
+        Set<String>c= mapPropiedad.keySet();
+        for(String clave: c){
+            System.out.println(clave);
+            if(mapPropiedad.get(clave) instanceof Casa){
+                if (!archivo.exists()) {
+                    try {
+                        archivo.createNewFile(); //Si no existe lo crea
+                        FileWriter escribir = new FileWriter(archivo, false);
+                        PrintWriter linea = new PrintWriter(escribir);
+                        linea.print(clave +"\r\n");
+                        linea.print(mapPropiedad.get(clave).getDireccion() +"\r\n");
+                        linea.print(  mapPropiedad.get(clave).getValorTasacion() +"\r\n");
+                        linea.print(mapPropiedad.get(clave).getCantAmbientes() +"\r\n");
+                        linea.print( mapPropiedad.get(clave).getMetrosCuadradosCubiertos() +"\r\n");
+                        linea.print( mapPropiedad.get(clave).getMetrosCuadradosTotales()+"\r\n");
+                        linea.print( ((Casa)(mapPropiedad.get(clave))).getAntiguedad()+"\r\n");
+                        linea.close();
+                        escribir.close();
+                    } catch (IOException ex) {
+                        System.err.println("Error");
+                    }       
+                }else{
+                    try {
+                        FileWriter escribir = new FileWriter(archivo, false);
+                        PrintWriter linea = new PrintWriter(escribir);
+                       linea.print(clave +"\r\n");
+                        linea.print(mapPropiedad.get(clave).getDireccion() +"\r\n");
+                        linea.print(  mapPropiedad.get(clave).getValorTasacion() +"\r\n");
+                        linea.print(mapPropiedad.get(clave).getCantAmbientes() +"\r\n");
+                        linea.print( mapPropiedad.get(clave).getMetrosCuadradosCubiertos() +"\r\n");
+                        linea.print( mapPropiedad.get(clave).getMetrosCuadradosTotales()+"\r\n");
+                        linea.print( ((Casa)(mapPropiedad.get(clave))).getAntiguedad()+"\r\n");
+                        linea.close();
+                        escribir.close();
+                    } catch (IOException ex) {
+                        System.err.println("Error");
+                    }   
+            
+                }
+            }
+        }
+    }
+    
+    public static void eliminarDepartamento(){
+        File archivo= new File("departamentos.txt");
+        Set<String>c= mapPropiedad.keySet();
+        for(String clave: c){
+            if (!archivo.exists()) {
+                 try {
+                        archivo.createNewFile(); //Si no existe lo crea
+                        FileWriter escribir = new FileWriter(archivo, false);
+                        PrintWriter linea = new PrintWriter(escribir);
+                        linea.print(clave +"\r\n");
+                        linea.print(mapPropiedad.get(clave).getDireccion() +"\r\n");
+                        linea.print(  mapPropiedad.get(clave).getValorTasacion() +"\r\n");
+                        linea.print(mapPropiedad.get(clave).getCantAmbientes() +"\r\n");
+                        linea.print( mapPropiedad.get(clave).getMetrosCuadradosCubiertos() +"\r\n");
+                        linea.print( mapPropiedad.get(clave).getMetrosCuadradosTotales()+"\r\n");
+                        linea.print(((Departamento)(mapPropiedad.get(clave))).getPiso() +"\r\n");
+                        linea.print(((Departamento)(mapPropiedad.get(clave))).getNumero() +"\r\n");
+                        linea.print(((Departamento)(mapPropiedad.get(clave))).getLetra()+"\r\n");
+                        linea.close();
+                        escribir.close();
+                    } catch (IOException ex) {
+                        System.err.println("Error");
+                    }       
+            }else{
+                try {
+                        FileWriter escribir = new FileWriter(archivo, false);
+                        PrintWriter linea = new PrintWriter(escribir);
+                        linea.print(clave +"\r\n");
+                        linea.print(mapPropiedad.get(clave).getDireccion() +"\r\n");
+                        linea.print(  mapPropiedad.get(clave).getValorTasacion() +"\r\n");
+                        linea.print(mapPropiedad.get(clave).getCantAmbientes() +"\r\n");
+                        linea.print( mapPropiedad.get(clave).getMetrosCuadradosCubiertos() +"\r\n");
+                        linea.print( mapPropiedad.get(clave).getMetrosCuadradosTotales()+"\r\n");
+                        linea.print(((Departamento)(mapPropiedad.get(clave))).getPiso() +"\r\n");
+                        linea.print(((Departamento)(mapPropiedad.get(clave))).getNumero() +"\r\n");
+                        linea.print(((Departamento)(mapPropiedad.get(clave))).getLetra()+"\r\n");
+                        linea.close();
+                        escribir.close();
+                } catch (IOException ex) {
+                    System.err.println("Error");
+                }   
+            }
+        }
+    }
+    
+    public static void modificarCasa(){
+        File archivo= new File("casas.txt");
+        Set<String>c= mapPropiedad.keySet();
+        for(String clave: c){
+            if(mapPropiedad.get(clave) instanceof Casa){
+                if (!archivo.exists()) {
+                    try {
+                        archivo.createNewFile(); //Si no existe lo crea
+                        FileWriter escribir = new FileWriter(archivo, false);
+                        PrintWriter linea = new PrintWriter(escribir);
+                        linea.print(clave +"\r\n");
+                        linea.print(mapPropiedad.get(clave).getDireccion() +"\r\n");
+                        linea.print(  mapPropiedad.get(clave).getValorTasacion() +"\r\n");
+                        linea.print(mapPropiedad.get(clave).getCantAmbientes() +"\r\n");
+                        linea.print( mapPropiedad.get(clave).getMetrosCuadradosCubiertos() +"\r\n");
+                        linea.print( mapPropiedad.get(clave).getMetrosCuadradosTotales()+"\r\n");
+                        linea.print( ((Casa)(mapPropiedad.get(clave))).getAntiguedad()+"\r\n");
+                        linea.close();
+                        escribir.close();
+                    } catch (IOException ex) {
+                        System.err.println("Error");
+                    }       
+                }else{
+                    try {
+                        FileWriter escribir = new FileWriter(archivo, false);
+                        PrintWriter linea = new PrintWriter(escribir);
+                        linea.print(clave +"\r\n");
+                        linea.print(mapPropiedad.get(clave).getDireccion() +"\r\n");
+                        linea.print(  mapPropiedad.get(clave).getValorTasacion() +"\r\n");
+                        linea.print(mapPropiedad.get(clave).getCantAmbientes() +"\r\n");
+                        linea.print( mapPropiedad.get(clave).getMetrosCuadradosCubiertos() +"\r\n");
+                        linea.print( mapPropiedad.get(clave).getMetrosCuadradosTotales()+"\r\n");
+                        linea.print( ((Casa)(mapPropiedad.get(clave))).getAntiguedad()+"\r\n");
+                        linea.close();
+                        escribir.close();
+                    } catch (IOException ex) {
+                        System.err.println("Error");
+                    }   
+            
+                }
+            }
+        }
+    }
+    
+    public static void modificarDepto(){
+       File archivo= new File("departamentos.txt");
+        Set<String>c= mapPropiedad.keySet();
+        for(String clave: c){
+            if (!archivo.exists()) {
+                try {
+                        archivo.createNewFile(); //Si no existe lo crea
+                        FileWriter escribir = new FileWriter(archivo, false);
+                        PrintWriter linea = new PrintWriter(escribir);
+                        linea.print(clave +"\r\n");
+                        linea.print(mapPropiedad.get(clave).getDireccion() +"\r\n");
+                        linea.print(  mapPropiedad.get(clave).getValorTasacion() +"\r\n");
+                        linea.print(mapPropiedad.get(clave).getCantAmbientes() +"\r\n");
+                        linea.print( mapPropiedad.get(clave).getMetrosCuadradosCubiertos() +"\r\n");
+                        linea.print( mapPropiedad.get(clave).getMetrosCuadradosTotales()+"\r\n");
+                        linea.print(((Departamento)(mapPropiedad.get(clave))).getPiso() +"\r\n");
+                        linea.print(((Departamento)(mapPropiedad.get(clave))).getNumero() +"\r\n");
+                        //linea.print(((Departamento)(mapPropiedad.get(clave))).getLetra()+"\r\n");
+                        linea.close();
+                        escribir.close();
+                    } catch (IOException ex) {
+                        System.err.println("Error");
+                    }       
+            }else{
+                    try {
+                            FileWriter escribir = new FileWriter(archivo, false);
+                            PrintWriter linea = new PrintWriter(escribir);
+                            linea.print(clave +"\r\n");
+                            linea.print(mapPropiedad.get(clave).getDireccion() +"\r\n");
+                            linea.print(  mapPropiedad.get(clave).getValorTasacion() +"\r\n");
+                            linea.print(mapPropiedad.get(clave).getCantAmbientes() +"\r\n");
+                            linea.print( mapPropiedad.get(clave).getMetrosCuadradosCubiertos() +"\r\n");
+                            linea.print( mapPropiedad.get(clave).getMetrosCuadradosTotales()+"\r\n");
+                            linea.print(((Departamento)(mapPropiedad.get(clave))).getPiso() +"\r\n");
+                            linea.print(((Departamento)(mapPropiedad.get(clave))).getNumero() +"\r\n");
+                           // linea.print(((Departamento)(mapPropiedad.get(clave))).getLetra()+"\r\n");
+                            linea.close();
+                            escribir.close();
+                        } catch (IOException ex) {
+                             System.err.println("Error");
+                        }   
+                    }
+                 }    
+        }   
+    
 }

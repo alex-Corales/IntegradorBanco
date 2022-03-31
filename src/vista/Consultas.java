@@ -5,7 +5,11 @@
  */
 package vista;
 
+import java.util.HashMap;
 import javax.swing.JOptionPane;
+import modelo.Propiedad;
+import controlador.*;
+import java.util.Set;
 
 /**
  *
@@ -209,7 +213,7 @@ public class Consultas extends javax.swing.JFrame {
     }//GEN-LAST:event_botonPopiedadMasHipotecadaActionPerformed
 
     private void botonPrestamosMenosCuotasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonPrestamosMenosCuotasActionPerformed
-       JOptionPane.showMessageDialog(this, "Funcion en construccion");
+        JOptionPane.showMessageDialog(this, "Funcion en construccion");
     }//GEN-LAST:event_botonPrestamosMenosCuotasActionPerformed
 
     private void botonPrestamosMayorMenorMontoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonPrestamosMayorMenorMontoActionPerformed
@@ -217,7 +221,13 @@ public class Consultas extends javax.swing.JFrame {
     }//GEN-LAST:event_botonPrestamosMayorMenorMontoActionPerformed
 
     private void botonMetrosCubiertosCasasDepartamentosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonMetrosCubiertosCasasDepartamentosActionPerformed
-        // TODO add your handling code here:
+
+        this.hide();
+        PromedioM2Hipotecas h = new PromedioM2Hipotecas();
+        h.setVisible(true);
+
+
+
     }//GEN-LAST:event_botonMetrosCubiertosCasasDepartamentosActionPerformed
 
     private void botonPersonasHipotecasTodosDatosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonPersonasHipotecasTodosDatosActionPerformed
@@ -230,7 +240,7 @@ public class Consultas extends javax.swing.JFrame {
 
     private void botonVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonVolverActionPerformed
         this.hide();
-        Home h=new Home();
+        Home h = new Home();
         h.setVisible(true);
     }//GEN-LAST:event_botonVolverActionPerformed
 

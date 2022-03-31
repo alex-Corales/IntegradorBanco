@@ -6,6 +6,7 @@
 package vista;
 
 import java.util.HashMap;
+import javax.swing.JOptionPane;
 import modelo.Propiedad;
 
 /**
@@ -215,17 +216,22 @@ public class Inmuebles extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void botonVerInmuebleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonVerInmuebleActionPerformed
-
+        VerInmueble a = new VerInmueble();
+        a.setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_botonVerInmuebleActionPerformed
 
     private void botonCargarInmuebleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonCargarInmuebleActionPerformed
         CargarInmueble a = new CargarInmueble();
         a.setVisible(true);
         this.setVisible(false);
+        
     }//GEN-LAST:event_botonCargarInmuebleActionPerformed
 
     private void botonModificarInmuebleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonModificarInmuebleActionPerformed
-       
+        Modificar m= new Modificar();
+        m.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_botonModificarInmuebleActionPerformed
 
     private void botonVolverInmuebleMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonVolverInmuebleMouseClicked
@@ -234,12 +240,14 @@ public class Inmuebles extends javax.swing.JFrame {
 
     private void botonVolverInmuebleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonVolverInmuebleActionPerformed
         this.hide();
-        Home h=new Home();
+        Home h = new Home();
         h.setVisible(true);
     }//GEN-LAST:event_botonVolverInmuebleActionPerformed
 
     private void botonEliminarInmuebleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonEliminarInmuebleActionPerformed
-        // TODO add your handling code here:
+        Eliminar e= new Eliminar();
+        e.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_botonEliminarInmuebleActionPerformed
 
     /**

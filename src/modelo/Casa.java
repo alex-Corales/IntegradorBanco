@@ -2,34 +2,38 @@ package modelo;
 
 public class Casa extends Propiedad {
 
-    private int antiguedad;
+    private String antiguedad;
 
     public Casa() {
         super();
-        this.antiguedad = 0;
+        this.antiguedad = "";
     }
 
-    public Casa(int antiguedad, String direccion, double valorTasacion, int cantAmbientes, double metrosCuadradosCubiertos, double metrosCuadradosTotales) {
+    /*
+    Constructor para la carga de los archivos 
+     */
+    public Casa(String antiguedad, String direccion, String valorTasacion, String cantAmbientes, String metrosCuadradosCubiertos, String metrosCuadradosTotales) {
         super(direccion, valorTasacion, cantAmbientes, metrosCuadradosCubiertos, metrosCuadradosTotales);
         this.antiguedad = antiguedad;
     }
 
-    public Casa(int antiguedad, int cantAmbientes, String direccion, double valorTasacion, int cantAmbientes0, double metrosCuadradosCubiertos, double metrosCuadradosTotales) {
-        super(direccion, valorTasacion, cantAmbientes, metrosCuadradosCubiertos, metrosCuadradosTotales);
+    public void setAntiguedad(String antiguedad) {
         this.antiguedad = antiguedad;
     }
 
-    public void setAntiguedad(int antiguedad) {
-        this.antiguedad = antiguedad;
-    }
-
-    public int getAntiguedad() {
+    public String getAntiguedad() {
         return antiguedad;
     }
 
     @Override
-    public String toString() {
-        return "Casa{" + "antiguedad=" + antiguedad + '}';
+    public void mostrarDatos() {
+        System.out.println("Direccion: " + direccion);
+        System.out.println("Tasacion: " + valorTasacion);
+        System.out.println("Ambientes: " + cantAmbientes);
+        System.out.println("Metros cuadrados cubiertos: " + metrosCuadradosCubiertos);
+        System.out.println("Metros cuadrados totales: " + metrosCuadradosTotales);
+        System.out.println("Antiguedad: " + antiguedad);
+
     }
 
 }

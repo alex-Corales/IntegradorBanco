@@ -32,6 +32,8 @@ public class LecturaArchivoUsuario {
                 }
 
             }
+            almacenamiento.close();
+            leer.close();
         } catch (IOException ex) {
 
         }
@@ -53,9 +55,6 @@ public class LecturaArchivoUsuario {
         } else {
             return 0;
         }
-
-//                almacenamiento.close();
-//                leer.close();
         return 0;
     }
 
